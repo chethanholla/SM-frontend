@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Order List</h2>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search Customer History" #searchTerm >
+    <button (click)="getOrderHistory(searchTerm.value)">Search></button>
+    <button class="btn btn-primary" routerLink="/orders/new">New</button>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Quantity</th>
+      <th>Product</th>
+      <th>Customer</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.id }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>{{ order.product.name }}</td>
+      <td>{{ order.customer.name }}</td>
+      <td><button class="btn btn-danger" (click)="deleteOrder(order.id)">Delete</button>
+        <button class="btn btn-primary" (click)="updateOrder(order.id)">Update</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

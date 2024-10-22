@@ -1,0 +1,9 @@
+.search-bar .btn-primary{
+  float:right;
+  margin-bottom:10px;
+}
+
+/*Update Button*/
+.btn-primary{
+  margin-left:10px;
+}

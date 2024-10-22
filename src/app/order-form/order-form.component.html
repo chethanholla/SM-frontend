@@ -1,0 +1,37 @@
+<div class="container">
+  <h2>{{isEditMode ? 'Update Order' : 'Create New Order'}}</h2>
+
+  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="quantity">Order Quantity</label>
+      <input id="quantity" formControlName="quantity" type="number" class="form-control" placeholder="Order Quantity">
+      <div *ngIf="orderForm.get('quantity')?.invalid && orderForm.get('quantity')?.touched" class="text-danger">
+        Quantity is required and must be a positive number.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="product">Product ID</label>
+      <input type="number" id="product" formControlName="product" class="form-control">
+      <div *ngIf="orderForm.get('product')?.invalid && orderForm.get('product')?.touched" class="text-danger">
+        Product ID is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="customer">Customer ID</label>
+      <input type="number" id="customer" formControlName="customer" class="form-control">
+      <div *ngIf="orderForm.get('customer')?.invalid && orderForm.get('customer')?.touched" class="text-danger">
+        Customer ID is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="orderForm.invalid">{{isEditMode ? 'Update Order' : 'Create New Order'}}
+    </button>
+
+    <button type="button" class="btn btn-secondary" (click)="cancel()">
+      Cancel
+    </button>
+
+  </form>
+</div>

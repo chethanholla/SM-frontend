@@ -1,0 +1,49 @@
+<div class="container">
+  <h2>Customer List</h2>
+
+  <div class="search-bar">
+      <input type="text" placeholder="Search customers" #searchTerm >
+      <button (click)="searchCustomers(searchTerm.value)">Search></button>
+      <button class="btn btn-primary" routerLink="/customer/new">New</button>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>{{ customer.id }}</td>
+      <td>{{ customer.name }}</td>
+      <td>{{ customer.email }}</td>
+      <td><button class="btn btn-danger" (click)="deleteCustomer(customer.id)">Delete</button>
+        <button class="btn btn-primary" (click)="selectCustomer(customer)">Update</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="selectedCustomer">
+  <h3>Update Customer</h3>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" [(ngModel)]="selectedCustomer!.name" name="name" class="form-control" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="selectedCustomer!.email" name="email" class="form-control" required/>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelUpdate()">Cancel</button>
+
+  </form>
+</div>
+
